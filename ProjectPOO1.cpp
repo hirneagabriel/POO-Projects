@@ -85,6 +85,8 @@ public:
     friend ostream& operator<<(ostream&, const Vector_de_vectori&);
     int** creare_matrice(int& n, int& m);
     int** operator+(Vector_de_vectori&);
+    int get_dimen();
+
 };
 
 Vector_de_vectori::Vector_de_vectori(int numar, int dimensiune)
@@ -118,7 +120,7 @@ istream& operator>>(istream& in, Vector_de_vectori& ob)
         ob.dimen = 0;
         delete[] ob.v;
     }
-    cout << "dimensiune matrice:";
+    cout << "dimensiune Vector de vectori:";
     in >> ob.dimen;
     ob.v = new Vector[ob.dimen];
     for (int i = 0; i < ob.dimen; i++)
@@ -130,28 +132,33 @@ istream& operator>>(istream& in, Vector_de_vectori& ob)
 
 ostream& operator<<(ostream& out, const Vector_de_vectori& ob)
 {
+    cout << "dimensiune: ";
+    cout << ob.dimen;
+    cout << endl;
+    cout << "Vectorul de vectori:";
+    cout << endl;
     for (int i = 0; i < ob.dimen; i++)
         cout << ob.v[i];
     return out;
 }
 
-int** Vector_de_vectori::creare_matrice(int& n, int& m)
+int** Vector_de_vectori::creare_matrice(int& nr_linii, int& nr_coloane)
 {
-    
-    for (int i = 0; i < dimen; i++)
-        if (m < v[i].dim)
-            m = v[i].dim;
 
-    if (n < dimen)
-        n = dimen;
+    for (int i = 0; i < dimen; i++)
+        if (nr_coloane < v[i].dim)
+            nr_coloane = v[i].dim;
+
+    if (nr_linii < dimen)
+        nr_linii = dimen;
 
     int** matrice;
-    matrice = new int* [n];
-    for (int i = 0; i < n; i++)
-        matrice[i] = new int[m];
+    matrice = new int* [nr_linii];
+    for (int i = 0; i < nr_linii; i++)
+        matrice[i] = new int[nr_coloane];
 
-    for (int i = 0; i < n; i++)
-        for (int j = 0; j < m; j++)
+    for (int i = 0; i < nr_linii; i++)
+        for (int j = 0; j < nr_coloane; j++)
             if (j < v[i].dim && i < dimen)
                 matrice[i][j] = v[i].arr[j];
             else
@@ -162,6 +169,7 @@ int** Vector_de_vectori::creare_matrice(int& n, int& m)
 int** Vector_de_vectori::operator+(Vector_de_vectori& ob)
 {
     int n = 0, m = 0, x = 0, y = 0;
+
     int** p1;
     int** p2;
     p1 = creare_matrice(n, m);
@@ -174,36 +182,85 @@ int** Vector_de_vectori::operator+(Vector_de_vectori& ob)
     if (x > n)
     {
         n = x;
-        p1 = ob.creare_matrice(n, m);
+        p1 = creare_matrice(n, m);
     }
     if (m < y)
     {
         m = y;
-        p1 = ob.creare_matrice(n, m);
+        p1 = creare_matrice(n, m);
     }
     if (m > y)
     {
         y = m;
         p2 = ob.creare_matrice(x, y);
     }
+
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             p1[i][j] = p1[i][j] + p2[i][j];
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+            cout << p1[i][j] <<" ";
+        cout << endl;
+    }
     return p1;
 }
 
+int Vector_de_vectori::get_dimen()
+{
+    return dimen;
+}
+
+void n_obiecte()
+{
+    int n;
+    cout << "numar obiecte:";
+    cin >> n;
+    Vector_de_vectori* p;
+    p = new Vector_de_vectori[n];
+    cout << "citire "<< n<<" obiecte: ";
+    cout << endl;
+    for (int i = 0; i < n; i++)
+    {
+
+        cin >> p[i];
+        cout << endl;
+    }
+    cout << endl;
+    cout << "afisare "<< n<<" obiecte:" << endl;
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "obiectul nr " << i + 1 << endl;
+        cout << p[i] << endl;
+
+    }
+
+}
 
 int main()
 {
 
-    Vector_de_vectori c,d;
-    cin >> c;
-    cin >> d;
-    int** matrice;
+    //testare metoda A+B
+    Vector_de_vectori a, b;
+    cin >> a >> b;
+    a + b;
+
+    //testare metoda creare_matrice(ce e comentat mai jos)
+    /*
+    int** p;
     int n = 0;
     int m = 0;
-    matrice = c+d;
-  
+    p=a.creare_matrice(n, m);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+            cout << p[i][j]<<" ";
+        cout << endl;
+    }
 
+    */
     return 0;
 }
