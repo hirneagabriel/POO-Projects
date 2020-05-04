@@ -244,9 +244,10 @@ int main()
 {
 
     //testare metoda A+B
-    Vector_de_vectori a, b;
-    cin >> a >> b;
-    a + b;
+    Vector_de_vectori a,b;
+    cin>>a>>b;
+     a+b;
+
 
     //testare metoda creare_matrice(ce e comentat mai jos)
     /*
