@@ -1,0 +1,15 @@
+numar de masini: 2
+class Coupe: Honda Civic -1
+class Coupe: Honda Accord -1
+numar de masini: 2
+class Cabrio: Opel Cascada -1
+class Cabrio: Porsche Boxster -1
+numar de masini: 2
+class Hothatch: Honda NSX -1
+class Hothatch: Ford FocusRS -1
+numar de masini supersport ramase: 2
+class Supersport: Ferrari f40 -1
+class Supersport: Lexus LF-A -1
+ numar de masini supersport vandute: 2
+class Supersport: Porsche 911 106000
+class Supersport: Bugatti Veyron 2500000

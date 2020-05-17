@@ -1,0 +1,16 @@
+10
+Supersport  Bugatti Veyron 2500000
+Supersport Lexus LF-A 2300000
+Hot-Hatch Honda NSX
+Supersport Porsche 911 106000
+Coupe Honda Civic
+Cabrio Opel Cascada
+Coupe Honda Accord
+Hot-Hatch Ford FocusRS
+Supersport Ferrari f40 500000
+Cabrio Porsche Boxster
+
+3
+Ferrari f40 230000
+Porsche 911 106000
+Bugatti Veyron 2500000
